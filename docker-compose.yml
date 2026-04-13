@@ -1,0 +1,13 @@
+services:
+  goonhub-bot:
+    build: .
+    container_name: goonhub-bot
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+    environment:
+      - TOKEN=${TOKEN}
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - GUILD_ID=${GUILD_ID}
+      - DATABASE_PATH=/data/database.sqlite

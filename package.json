@@ -1,0 +1,22 @@
+{
+  "name": "goonhub-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+    "deploy": "node deploy.js",
+    "start": "node src/index.js",
+    "dev": "npm run deploy && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.15.0",
+    "better-sqlite3": "^12.8.0",
+    "concurrently": "^9.2.1",
+    "discord.js": "^14.26.2",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1"
+  }
+}
