@@ -22,7 +22,6 @@ module.exports = {
 
     const sorted = [...rewards].sort((a, b) => a.invites - b.invites);
 
-    // 🏆 aktuelle Rolle
     let currentReward = null;
     for (const reward of sorted) {
       if (inviteCount >= reward.invites) {
@@ -30,7 +29,6 @@ module.exports = {
       }
     }
 
-    // 🎯 nächste Rolle
     let nextReward = sorted.find(r => inviteCount < r.invites);
 
     const currentRole = currentReward
