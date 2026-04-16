@@ -1,5 +1,5 @@
 module.exports = {
-  logChannelId: "1491568137181728804", // <-- HIER deinen Log Channel rein
+  logChannelId: "1308487943467565203",
 
   rewards: [
     { invites: 5, roleId: "1308493499913470002", name: "Gooner lvl. 1" },
