@@ -3,11 +3,10 @@ const Database = require("better-sqlite3");
 let db;
 
 function init() {
-  const dbPath = process.env.DATABASE_PATH || "./database.sqlite";
-  db = new Database(dbPath);
+  db = new Database("./database.sqlite");
 
   // =============================
-  // 🔐 VERIFICATION SYSTEM (NEU)
+  // VERIFICATION SYSTEM (NEU)
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS verified_users (
@@ -19,7 +18,7 @@ function init() {
   `).run();
 
   // =============================
-  // 🎫 TICKETS
+  // TICKETS
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS tickets (
@@ -45,7 +44,7 @@ function init() {
   `).run();
 
   // =============================
-  // 🎭 REACTION ROLES
+  // REACTION ROLES
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS reaction_roles (
@@ -58,7 +57,7 @@ function init() {
   `).run();
 
   // =============================
-  // 🎁 GIVEAWAYS
+  // GIVEAWAYS
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS giveaways (
@@ -78,7 +77,7 @@ function init() {
   } catch {}
 
   // =============================
-  // 🎁 GIVEAWAY ENTRIES
+  // GIVEAWAY ENTRIES
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS giveaway_entries (
@@ -89,7 +88,7 @@ function init() {
   `).run();
 
   // =============================
-  // 📈 LEVEL SYSTEM
+  // LEVEL SYSTEM
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS levels (
@@ -100,7 +99,7 @@ function init() {
   `).run();
 
   // =============================
-  // 💰 ECONOMY
+  // ECONOMY
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS economy (
@@ -110,7 +109,7 @@ function init() {
   `).run();
 
   // =============================
-  // 📨 INVITES
+  // INVITES
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS invites (
@@ -126,7 +125,7 @@ function init() {
   `).run();
 
   // =============================
-  // 📨 INVITE JOINS
+  // INVITE JOINS
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS invite_joins (
@@ -140,7 +139,7 @@ function init() {
   `).run();
 
   // =============================
-  // 🔗 USER INVITES
+  // USER INVITES
   // =============================
   db.prepare(`
     CREATE TABLE IF NOT EXISTS user_invites (
@@ -156,11 +155,9 @@ function init() {
   console.log("✅ Database fully ready (ALL SYSTEMS)");
 }
 
-// 🔥 WICHTIG: DIREKT DB EXPORTIEREN
 function getDB() {
   if (!db) init();
   return db;
 }
 
-// 🔥 MAGIC FIX → erlaubt require(...).prepare()
 module.exports = { getDB };
