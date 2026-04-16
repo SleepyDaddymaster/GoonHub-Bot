@@ -1,5 +1,4 @@
 const { getDB } = require("../services/database.service");
-const { logChannelId, rewards } = require("../modules/invites/inviteRewards");
 
 class InviteManager {
   constructor(client) {
@@ -45,11 +44,6 @@ class InviteManager {
       DO UPDATE SET invites = invites + 1
     `).run(guild.id, inviterId);
 
-    this.db.prepare(`
-      INSERT INTO invite_joins (guildId, userId, inviterId, inviteCode, timestamp)
-      VALUES (?, ?, ?, ?, ?)
-    `).run(guild.id, member.id, inviterId, usedInvite.code, Date.now());
-
     const updated = this.getUser(guild.id, inviterId);
     const inviterMember = await guild.members.fetch(inviterId).catch(() => null);
 
@@ -87,10 +81,11 @@ class InviteManager {
                 ],
                 timestamp: new Date()
               }]
-            }).catch(() => {});
+            });
           }
         }
       }
+
     }
   }
 
@@ -131,7 +126,7 @@ class InviteManager {
     );
 
     if (!channel) {
-      throw new Error("No channel found to create invite");
+      throw new Error("No channel found to create invite, try in another channel");
     }
 
     const invite = await channel.createInvite({
