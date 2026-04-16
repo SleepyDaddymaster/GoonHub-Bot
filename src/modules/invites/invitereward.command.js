@@ -15,7 +15,7 @@ module.exports = {
     const target = interaction.options.getUser("user") || interaction.user;
     const member = await interaction.guild.members.fetch(target.id);
 
-    const inviteManager = client.inviteManager; // wichtig!
+    const inviteManager = client.inviteManager;
     const data = inviteManager.getUser(interaction.guild.id, target.id);
 
     const inviteCount = data.invites;
